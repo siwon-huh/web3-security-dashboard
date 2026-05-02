@@ -168,7 +168,7 @@ export const SEAL_MEMBERS: ReadonlyArray<{
   { name: "Miguel", affiliation: "Tracelon" },
   { name: "Lauren", affiliation: "Tracelon" },
   { name: "Josh", affiliation: "Cryptoforensic Investigators" },
-  { name: "Julia", affiliation: "zeroShadow" },
+  { name: "Julia", affiliation: "zeroShadow", twitter: "julia27eth" },
   { name: "SunSec", affiliation: "DefiHackLabs", twitter: "1nf0s3cpt" },
   { name: "Niv", affiliation: "Hexagate" },
   { name: "Dan", affiliation: "Hypernative" },
