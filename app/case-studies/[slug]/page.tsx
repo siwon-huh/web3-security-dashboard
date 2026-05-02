@@ -42,7 +42,7 @@ export default async function CaseStudyDetailPage({
     <div className="mx-auto max-w-6xl px-6 py-16">
       <Link
         href="/case-studies"
-        className="text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
+        className="text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
       >
         ← Best Cases
       </Link>
@@ -51,7 +51,7 @@ export default async function CaseStudyDetailPage({
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
           Security Best Case
         </p>
-        <h1 className="mt-3 text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight">
+        <h1 className="mt-3 text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
           {cs.name}
         </h1>
         <p className="mt-2 text-lg text-neutral-500">{cs.tagline}</p>
@@ -61,7 +61,7 @@ export default async function CaseStudyDetailPage({
             href={cs.website}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-1.5 rounded-md border border-neutral-300 hover:border-neutral-900 text-neutral-900 transition-colors"
+            className="px-4 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 text-neutral-900 dark:text-neutral-50 transition-colors"
           >
             Website →
           </a>
@@ -70,7 +70,7 @@ export default async function CaseStudyDetailPage({
               href={cs.docsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-1.5 rounded-md border border-neutral-300 hover:border-neutral-900 text-neutral-900 transition-colors"
+              className="px-4 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 text-neutral-900 dark:text-neutral-50 transition-colors"
             >
               Docs →
             </a>
@@ -80,14 +80,14 @@ export default async function CaseStudyDetailPage({
               href={cs.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-1.5 rounded-md border border-neutral-300 hover:border-neutral-900 text-neutral-900 transition-colors"
+              className="px-4 py-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 text-neutral-900 dark:text-neutral-50 transition-colors"
             >
               GitHub →
             </a>
           )}
         </div>
 
-        <p className="mt-8 text-neutral-700 max-w-3xl leading-relaxed">
+        <p className="mt-8 text-neutral-700 dark:text-neutral-300 max-w-3xl leading-relaxed">
           {cs.summary}
         </p>
 
@@ -95,7 +95,7 @@ export default async function CaseStudyDetailPage({
           {cs.highlights.map((h) => (
             <span
               key={h}
-              className="text-xs px-2.5 py-1 rounded-md border border-neutral-300 bg-neutral-50 text-neutral-800"
+              className="text-xs px-2.5 py-1 rounded-md border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200"
             >
               {h}
             </span>
@@ -109,9 +109,9 @@ export default async function CaseStudyDetailPage({
           title={`${cs.audits.length}건의 독립 오딧`}
           description="서로 다른 펌, 서로 다른 방법론(수동, 정형, 컨테스트, invariant)으로 다층 검증."
         />
-        <div className="mt-6 rounded-xl border border-neutral-200 bg-white overflow-hidden">
+        <div className="mt-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-neutral-50 border-b border-neutral-200">
+            <thead className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
               <tr>
                 <th className="text-left text-[11px] uppercase tracking-widest text-neutral-500 font-medium px-5 py-3">
                   Date
@@ -137,13 +137,13 @@ export default async function CaseStudyDetailPage({
                   className={
                     idx === cs.audits.length - 1
                       ? ""
-                      : "border-b border-neutral-100"
+                      : "border-b border-neutral-100 dark:border-neutral-900"
                   }
                 >
-                  <td className="px-5 py-3 text-neutral-700 tabular-nums whitespace-nowrap">
+                  <td className="px-5 py-3 text-neutral-700 dark:text-neutral-300 tabular-nums whitespace-nowrap">
                     {a.date}
                   </td>
-                  <td className="px-5 py-3 font-medium text-neutral-900">
+                  <td className="px-5 py-3 font-medium text-neutral-900 dark:text-neutral-50">
                     <span className="flex items-center gap-2.5">
                       {(() => {
                         const site = lookupAuditorWebsite(a.firm);
@@ -165,10 +165,10 @@ export default async function CaseStudyDetailPage({
                     {a.tier ? (
                       <TierBadge tier={a.tier} />
                     ) : (
-                      <span className="text-neutral-400 text-xs">—</span>
+                      <span className="text-neutral-400 dark:text-neutral-600 text-xs">—</span>
                     )}
                   </td>
-                  <td className="px-5 py-3 text-neutral-600">
+                  <td className="px-5 py-3 text-neutral-600 dark:text-neutral-400">
                     {a.scope ?? ""}
                   </td>
                   <td className="px-5 py-3">
@@ -177,12 +177,12 @@ export default async function CaseStudyDetailPage({
                         href={a.reportUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-neutral-700 hover:text-neutral-900 underline underline-offset-4 text-xs"
+                        className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 text-xs"
                       >
                         PDF →
                       </a>
                     ) : (
-                      <span className="text-neutral-400 text-xs">—</span>
+                      <span className="text-neutral-400 dark:text-neutral-600 text-xs">—</span>
                     )}
                   </td>
                 </tr>
@@ -201,9 +201,9 @@ export default async function CaseStudyDetailPage({
         {cs.groups.map((g) => (
           <div
             key={g.id}
-            className="rounded-xl border border-neutral-200 bg-white p-6"
+            className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6"
           >
-            <h3 className="font-semibold text-neutral-900 tracking-tight">
+            <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
               {g.title}
             </h3>
             <p className="mt-1 text-sm text-neutral-500">{g.description}</p>
@@ -211,12 +211,12 @@ export default async function CaseStudyDetailPage({
               {g.features.map((f, idx) => (
                 <li
                   key={idx}
-                  className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-6 pb-5 border-b border-neutral-100 last:border-0 last:pb-0"
+                  className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-6 pb-5 border-b border-neutral-100 dark:border-neutral-900 last:border-0 last:pb-0"
                 >
-                  <h4 className="font-medium text-neutral-900 leading-snug">
+                  <h4 className="font-medium text-neutral-900 dark:text-neutral-50 leading-snug">
                     {f.title}
                   </h4>
-                  <p className="text-sm text-neutral-600 leading-relaxed">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                     {f.detail}
                   </p>
                 </li>
@@ -227,7 +227,7 @@ export default async function CaseStudyDetailPage({
       </section>
 
       <section className="rounded-xl border border-neutral-900 bg-neutral-900 text-neutral-50 p-8">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-400 font-medium">
+        <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 font-medium">
           Takeaway
         </p>
         <p className="mt-3 text-lg leading-relaxed">{cs.takeaway}</p>
@@ -246,11 +246,11 @@ function SectionHeader({
   readonly description: string;
 }) {
   return (
-    <div className="border-b border-neutral-200 pb-3">
+    <div className="border-b border-neutral-200 dark:border-neutral-800 pb-3">
       <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
         {eyebrow}
       </p>
-      <h2 className="mt-2 text-2xl font-semibold text-neutral-900 tracking-tight">
+      <h2 className="mt-2 text-2xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
         {title}
       </h2>
       <p className="mt-1 text-sm text-neutral-500 leading-relaxed">

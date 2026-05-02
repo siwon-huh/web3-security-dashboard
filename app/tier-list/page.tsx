@@ -20,10 +20,10 @@ export default function TierListPage() {
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
           Tier List
         </p>
-        <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 tracking-tight">
+        <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
           Web3 오딧 펌 티어
         </h1>
-        <p className="mt-4 text-neutral-600 max-w-3xl leading-relaxed">
+        <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           공개된 오딧 보고서, 인시던트 이력, 도구 체인의 깊이, 업계 평판을 종합한 휴리스틱 분류입니다.
           같은 티어 안에서도 주력 영역이 다르므로 카테고리별로 함께 분류했습니다.
         </p>
@@ -32,7 +32,7 @@ export default function TierListPage() {
           {ORDERED_CATEGORIES.map((cat) => (
             <span
               key={cat}
-              className="text-xs px-2.5 py-1 rounded-md border border-neutral-200 bg-white text-neutral-700"
+              className="text-xs px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300"
             >
               {CATEGORY_META[cat].label}
             </span>
@@ -47,17 +47,17 @@ export default function TierListPage() {
           const meta = TIER_META[tier];
           return (
             <section key={tier}>
-              <div className="flex items-center gap-4 mb-6 pb-4 border-b border-neutral-200">
+              <div className="flex items-center gap-4 mb-6 pb-4 border-b border-neutral-200 dark:border-neutral-800">
                 <TierBadge tier={tier} size="lg" />
                 <div className="flex-1">
-                  <h2 className="text-2xl font-semibold text-neutral-900 tracking-tight">
+                  <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
                     {meta.label}
                   </h2>
                   <p className="text-sm text-neutral-500 mt-0.5">
                     {meta.description}
                   </p>
                 </div>
-                <span className="text-[11px] uppercase tracking-widest text-neutral-400 tabular-nums">
+                <span className="text-[11px] uppercase tracking-widest text-neutral-400 dark:text-neutral-600 tabular-nums">
                   {firms.length} firms
                 </span>
               </div>
@@ -73,7 +73,7 @@ export default function TierListPage() {
                         <h3 className="text-[11px] uppercase tracking-[0.18em] font-medium text-neutral-500">
                           {catMeta.label}
                         </h3>
-                        <span className="text-[11px] text-neutral-400 tabular-nums">
+                        <span className="text-[11px] text-neutral-400 dark:text-neutral-600 tabular-nums">
                           {subset.length}
                         </span>
                       </div>

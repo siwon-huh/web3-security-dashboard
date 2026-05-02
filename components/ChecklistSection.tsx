@@ -22,18 +22,18 @@ export function ChecklistSection({
   onChange,
 }: ChecklistSectionProps) {
   return (
-    <section className="rounded-xl border border-neutral-200 bg-white p-6">
-      <header className="flex items-start justify-between gap-4 border-b border-neutral-100 pb-4 mb-5">
+    <section className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
+      <header className="flex items-start justify-between gap-4 border-b border-neutral-100 dark:border-neutral-900 pb-4 mb-5">
         <div>
-          <h2 className="text-lg font-semibold text-neutral-900 tracking-tight">
+          <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
             {category.title}
           </h2>
           <p className="text-sm text-neutral-500 mt-1">{category.description}</p>
         </div>
         <div className="text-right shrink-0">
-          <div className="text-xl font-semibold text-neutral-900 tabular-nums">
+          <div className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 tabular-nums">
             {score.earned}
-            <span className="text-neutral-400 text-sm"> / {score.possible}</span>
+            <span className="text-neutral-400 dark:text-neutral-600 text-sm"> / {score.possible}</span>
           </div>
           <div className="text-xs text-neutral-500 tabular-nums">
             {score.percent}%
@@ -66,8 +66,8 @@ function ChecklistRow({ item, value, onChange }: ChecklistRowProps) {
     <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3 md:gap-6 items-start py-4 first:pt-0 last:pb-0">
       <div>
         <div className="flex items-center gap-2">
-          <span className="font-medium text-neutral-900">{item.label}</span>
-          <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded border border-neutral-200 text-neutral-500">
+          <span className="font-medium text-neutral-900 dark:text-neutral-50">{item.label}</span>
+          <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded border border-neutral-200 dark:border-neutral-800 text-neutral-500">
             w{item.weight}
           </span>
         </div>
@@ -119,7 +119,7 @@ function BooleanToggle({
               "px-4 py-2 rounded-md text-sm font-medium transition-colors border",
               active
                 ? "bg-neutral-900 border-neutral-900 text-neutral-50"
-                : "bg-white border-neutral-200 text-neutral-600 hover:border-neutral-400 hover:text-neutral-900",
+                : "bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:border-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50",
             ].join(" ")}
           >
             {opt.label}
@@ -143,7 +143,7 @@ function SelectInput({
     <select
       value={value ?? ""}
       onChange={(e) => onChange(item.id, e.target.value)}
-      className="w-full bg-white border border-neutral-200 rounded-md px-3 py-2 text-sm text-neutral-900 hover:border-neutral-400 focus:border-neutral-900 focus:outline-none transition-colors"
+      className="w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-900 dark:text-neutral-50 hover:border-neutral-400 focus:border-neutral-900 focus:outline-none transition-colors"
     >
       <option value="" disabled>
         선택…

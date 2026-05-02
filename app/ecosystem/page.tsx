@@ -17,10 +17,10 @@ export default function EcosystemPage() {
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
           Security Ecosystem
         </p>
-        <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 tracking-tight">
+        <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
           오딧 펌 외 보안 생태계
         </h1>
-        <p className="mt-4 text-neutral-600 max-w-3xl leading-relaxed">
+        <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           모니터링, 버그 바운티, 인시던트 대응, 포렌식, 오픈소스 도구 등 오딧이
           아닌 보안 영역의 회사들과 도구를 정리합니다. 점수 평가 시 운영 보안,
           바운티, 인시던트 항목과 직접 연결되는 레퍼런스입니다.
@@ -50,16 +50,16 @@ export default function EcosystemPage() {
           const meta = ECOSYSTEM_CATEGORY_META[cat];
           return (
             <section key={cat}>
-              <div className="flex items-baseline justify-between mb-4 pb-3 border-b border-neutral-200">
+              <div className="flex items-baseline justify-between mb-4 pb-3 border-b border-neutral-200 dark:border-neutral-800">
                 <div>
-                  <h2 className="text-xl font-semibold text-neutral-900 tracking-tight">
+                  <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
                     {meta.label}
                   </h2>
                   <p className="text-sm text-neutral-500 mt-0.5">
                     {meta.description}
                   </p>
                 </div>
-                <span className="text-[11px] uppercase tracking-widest text-neutral-400 tabular-nums shrink-0 ml-4">
+                <span className="text-[11px] uppercase tracking-widest text-neutral-400 dark:text-neutral-600 tabular-nums shrink-0 ml-4">
                   {items.length}
                 </span>
               </div>
@@ -84,11 +84,11 @@ function Stat({
   readonly value: number;
 }) {
   return (
-    <div className="rounded-md border border-neutral-200 bg-white px-3 py-2">
+    <div className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-3 py-2">
       <div className="text-[10px] uppercase tracking-widest text-neutral-500">
         {label}
       </div>
-      <div className="text-xl font-semibold text-neutral-900 tabular-nums mt-0.5">
+      <div className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 tabular-nums mt-0.5">
         {value}
       </div>
     </div>

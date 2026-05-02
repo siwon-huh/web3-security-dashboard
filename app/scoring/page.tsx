@@ -26,10 +26,10 @@ export default function ScoringPage() {
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
           Security Score
         </p>
-        <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 tracking-tight">
+        <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
           프로젝트 보안 점수 체크리스트
         </h1>
-        <p className="mt-4 text-neutral-600 max-w-3xl leading-relaxed">
+        <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           각 항목에 답하면 가중치 기반으로 0–100점이 실시간 계산됩니다. 답하지
           않은 항목은 0점으로 처리되니, 모든 항목을 채워야 신뢰할 만한 점수가
           나옵니다.

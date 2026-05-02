@@ -24,16 +24,16 @@ export default function IncidentResponsePage() {
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
           Operational Security & Incident Response
         </p>
-        <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 tracking-tight">
+        <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
           운영 보안과 사고 대응
         </h1>
-        <p className="mt-4 text-neutral-600 max-w-3xl leading-relaxed">
+        <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           사고는 막을 수 없지만 손실은 줄일 수 있습니다. 사전 준비, 사고 발생 시
           플로우, 그리고 회수 전략을 정리합니다. 프로젝트 운영자와 개인 사용자의
           시각이 다르므로 토글로 전환해서 보세요.
         </p>
 
-        <div className="mt-8 inline-flex rounded-md border border-neutral-300 bg-white p-1">
+        <div className="mt-8 inline-flex rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 p-1">
           <ToggleButton
             active={view === "project"}
             onClick={() => setView("project")}
@@ -114,14 +114,14 @@ function ToggleButton({
         "px-5 py-2 rounded text-sm font-medium transition-colors text-left",
         active
           ? "bg-neutral-900 text-neutral-50"
-          : "text-neutral-600 hover:text-neutral-900",
+          : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50",
       ].join(" ")}
     >
       <div>{label}</div>
       <div
         className={[
           "text-[10px] uppercase tracking-wider mt-0.5",
-          active ? "text-neutral-400" : "text-neutral-400",
+          active ? "text-neutral-400 dark:text-neutral-600" : "text-neutral-400 dark:text-neutral-600",
         ].join(" ")}
       >
         {sub}
@@ -135,16 +135,16 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
     (p) => p.audience === "both" || p.audience === currentView,
   );
   return (
-    <section className="rounded-xl border border-neutral-200 bg-white p-6">
+    <section className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
       <div className="flex items-baseline justify-between">
         <div>
           <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
             Security Alliance
           </p>
-          <h2 className="mt-2 text-xl font-semibold text-neutral-900 tracking-tight">
+          <h2 className="mt-2 text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
             SEAL Alliance
           </h2>
-          <p className="mt-1.5 text-sm text-neutral-600 leading-relaxed max-w-3xl">
+          <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl">
             samczsun과 다수의 화이트햇이 주축인 비영리 보안 연합. 사고 시 가장
             빠르게 도달 가능한 화이트햇 풀이며, 프로젝트와 개인 모두에 무료로
             열려 있다.
@@ -154,7 +154,7 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
           href="https://www.securityalliance.org"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-neutral-700 hover:text-neutral-900 underline underline-offset-4 shrink-0 ml-4"
+          className="text-sm text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 shrink-0 ml-4"
         >
           securityalliance.org →
         </a>
@@ -166,15 +166,15 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
             href={p.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block rounded-lg border border-neutral-200 bg-neutral-50 p-4 hover:border-neutral-900 transition-colors"
+            className="group block rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 p-4 hover:border-neutral-900 transition-colors"
           >
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-semibold text-neutral-900">{p.name}</h3>
-              <span className="text-neutral-300 group-hover:text-neutral-900 transition-colors text-sm">
+              <h3 className="font-semibold text-neutral-900 dark:text-neutral-50">{p.name}</h3>
+              <span className="text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-neutral-50 transition-colors text-sm">
                 →
               </span>
             </div>
-            <p className="mt-2 text-xs text-neutral-600 leading-relaxed">
+            <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
               {p.description}
             </p>
           </a>
@@ -194,11 +194,11 @@ function SectionHeader({
   readonly description: string;
 }) {
   return (
-    <div className="border-b border-neutral-200 pb-3">
+    <div className="border-b border-neutral-200 dark:border-neutral-800 pb-3">
       <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
         {eyebrow}
       </p>
-      <h2 className="mt-2 text-2xl font-semibold text-neutral-900 tracking-tight">
+      <h2 className="mt-2 text-2xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
         {title}
       </h2>
       <p className="mt-1 text-sm text-neutral-500 leading-relaxed">
@@ -210,8 +210,8 @@ function SectionHeader({
 
 function PrepGroupCard({ group }: { readonly group: PrepGroup }) {
   return (
-    <div className="rounded-xl border border-neutral-200 bg-white p-6">
-      <h3 className="font-semibold text-neutral-900 tracking-tight">
+    <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
+      <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
         {group.title}
       </h3>
       <p className="mt-1 text-sm text-neutral-500">{group.description}</p>
@@ -227,9 +227,9 @@ function PrepGroupCard({ group }: { readonly group: PrepGroup }) {
 
 function PrepItemRow({ item }: { readonly item: PrepItem }) {
   return (
-    <li className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-6 pb-5 border-b border-neutral-100 last:border-0 last:pb-0">
+    <li className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-6 pb-5 border-b border-neutral-100 dark:border-neutral-900 last:border-0 last:pb-0">
       <div>
-        <h4 className="font-medium text-neutral-900 leading-snug">
+        <h4 className="font-medium text-neutral-900 dark:text-neutral-50 leading-snug">
           {item.title}
         </h4>
         {item.tools && item.tools.length > 0 && (
@@ -240,7 +240,7 @@ function PrepItemRow({ item }: { readonly item: PrepItem }) {
                 href={t.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-200 text-neutral-700 bg-neutral-50 hover:border-neutral-400 hover:text-neutral-900 transition-colors"
+                className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 bg-neutral-50 dark:bg-neutral-900 hover:border-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
               >
                 {t.name}
               </a>
@@ -248,7 +248,7 @@ function PrepItemRow({ item }: { readonly item: PrepItem }) {
           </div>
         )}
       </div>
-      <p className="text-sm text-neutral-600 leading-relaxed">{item.detail}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{item.detail}</p>
     </li>
   );
 }
@@ -265,16 +265,16 @@ function FlowStepCard({
       <div className="absolute left-0 top-0 h-7 w-7 rounded-full bg-neutral-900 text-neutral-50 text-xs font-semibold flex items-center justify-center tabular-nums z-10">
         {index + 1}
       </div>
-      <div className="rounded-xl border border-neutral-200 bg-white p-5">
+      <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5">
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
-          <h3 className="font-semibold text-neutral-900 tracking-tight">
+          <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
             {step.phase}
           </h3>
           <span className="text-[11px] uppercase tracking-widest text-neutral-500 tabular-nums">
             {step.timing}
           </span>
         </div>
-        <p className="mt-2 text-sm text-neutral-600 leading-relaxed">
+        <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
           {step.summary}
         </p>
         <ul className="mt-4 space-y-2">
@@ -284,8 +284,8 @@ function FlowStepCard({
               className={[
                 "text-sm leading-relaxed pl-4 relative",
                 action.emphasis
-                  ? "text-neutral-900 font-medium"
-                  : "text-neutral-700",
+                  ? "text-neutral-900 dark:text-neutral-50 font-medium"
+                  : "text-neutral-700 dark:text-neutral-300",
               ].join(" ")}
             >
               <span

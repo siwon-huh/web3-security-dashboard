@@ -4,8 +4,8 @@ const TIER_STYLES: Readonly<Record<Tier, string>> = {
   S: "bg-neutral-900 text-neutral-50 border-neutral-900",
   "A+": "bg-neutral-800 text-neutral-50 border-neutral-800",
   A: "bg-neutral-600 text-neutral-50 border-neutral-600",
-  B: "bg-neutral-300 text-neutral-900 border-neutral-300",
-  C: "bg-neutral-50 text-neutral-700 border-neutral-300",
+  B: "bg-neutral-300 text-neutral-900 dark:text-neutral-50 border-neutral-300 dark:border-neutral-700",
+  C: "bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700",
 };
 
 interface TierBadgeProps {
