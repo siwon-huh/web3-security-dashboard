@@ -72,6 +72,20 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
       "크립토 조직이 실제로 마주하는 위협을 기준으로 설계된 모듈형 인증 프로그램. 인시던트 대응, 멀티시그 운영, 트레저리 보안, 워크스페이스 보안, DNS 관리 등 5개 도메인을 커버합니다. 인증된 오딧터가 평가하고 결과는 EAS(Ethereum Attestation Service)로 온체인에 영구 기록되어 누구나 검증 가능. 현재 베타로 15개 이상의 조직이 파일럿 참여 중.",
     url: "https://securityalliance.org/our-work/certifications",
   },
+  {
+    name: "SEAL Intel",
+    audience: "both",
+    description:
+      "크립토 생태계 전반의 위협 인텔리전스. 피싱 캠페인, 지갑 드레이너 멀웨어, 국가 단위 공격 등에 대한 실시간 알림을 제공합니다. 300개 이상의 위협 리포트와 20만 개 이상의 악성 도메인 데이터베이스를 운영하며 SDK도 공개. MetaMask, Phantom, WalletConnect 같은 메이저 지갑이 이 인텔을 직접 통합해 사용자에게 노출되는 위협을 차단합니다.",
+    url: "https://securityalliance.org/our-work/seal-intel",
+  },
+  {
+    name: "Lazarus Group Tracker",
+    audience: "both",
+    description:
+      "북한(DPRK) 공작원이 크립토 업계에 IT 워커로 침투하는 패턴을 추적하고 공개하는 리소스. 60명 이상의 운영자 프로파일과 알려진 별칭을 정리해 놓았으며, 누적 $6B 이상의 자금 탈취가 연결됐다고 추정됩니다. 거래소, 프로토콜, 법집행기관이 채용 단계에서 스크리닝 자료로 활용 중. 채용 직전 후보 신원은 반드시 이 데이터베이스에 대조해 보는 것이 표준이 되어 가는 추세입니다.",
+    url: "https://securityalliance.org/our-work/lazarus-group",
+  },
 ];
 
 export const PROJECT_CONTENT: ViewContent = {
