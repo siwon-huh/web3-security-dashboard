@@ -153,11 +153,7 @@ export const SEAL_MEMBERS: ReadonlyArray<{
   twitter?: string;
 }> = [
   { name: "samczsun", affiliation: "Security Alliance", twitter: "samczsun" },
-  {
-    name: "0xc0ffeebabe",
-    affiliation: "Independent",
-    twitter: "0xc0ffeebabe",
-  },
+  { name: "0xc0ffeebabe", affiliation: "Independent" },
   {
     name: "pcaversaccio",
     affiliation: "Independent",
