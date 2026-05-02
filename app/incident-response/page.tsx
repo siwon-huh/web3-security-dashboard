@@ -121,7 +121,9 @@ function ToggleButton({
       <div
         className={[
           "text-[10px] uppercase tracking-wider mt-0.5",
-          active ? "text-neutral-400 dark:text-neutral-600" : "text-neutral-400 dark:text-neutral-600",
+          active
+            ? "text-neutral-400 dark:text-neutral-600"
+            : "text-neutral-400 dark:text-neutral-600",
         ].join(" ")}
       >
         {sub}
@@ -169,8 +171,19 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
             className="group block rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 p-4 hover:border-neutral-900 transition-colors"
           >
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-semibold text-neutral-900 dark:text-neutral-50">{p.name}</h3>
-              <span className="text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-neutral-50 transition-colors text-sm">
+              <div className="flex items-center gap-2.5 min-w-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://www.google.com/s2/favicons?domain=securityalliance.org&sz=64"
+                  alt=""
+                  loading="lazy"
+                  className="h-5 w-5 rounded shrink-0 object-contain"
+                />
+                <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 truncate">
+                  {p.name}
+                </h3>
+              </div>
+              <span className="text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-neutral-50 transition-colors text-sm shrink-0">
                 →
               </span>
             </div>
@@ -248,7 +261,9 @@ function PrepItemRow({ item }: { readonly item: PrepItem }) {
           </div>
         )}
       </div>
-      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{item.detail}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+        {item.detail}
+      </p>
     </li>
   );
 }
