@@ -4,7 +4,67 @@ import { CASE_STUDIES, getCaseStudy } from "@/lib/case-studies";
 import { AUDIT_FIRMS } from "@/lib/audit-firms";
 import { firmLogoUrl } from "@/lib/logo";
 import { TierBadge } from "@/components/TierBadge";
+import { isLang, LANGS, type Lang } from "@/lib/i18n";
 import type { Metadata } from "next";
+
+const DICT: Readonly<
+  Record<
+    Lang,
+    {
+      back: string;
+      eyebrow: string;
+      auditsEyebrow: string;
+      auditsTitle: (n: number) => string;
+      auditsDescription: string;
+      opsEyebrow: string;
+      opsTitle: string;
+      opsDescription: string;
+      takeaway: string;
+      dateCol: string;
+      firmCol: string;
+      tierCol: string;
+      scopeCol: string;
+      reportCol: string;
+    }
+  >
+> = {
+  ko: {
+    back: "← Best Cases",
+    eyebrow: "Security Best Case",
+    auditsEyebrow: "Audits",
+    auditsTitle: (n) => `${n}건의 독립 오딧`,
+    auditsDescription:
+      "서로 다른 펌, 서로 다른 방법론(수동, 정형, 컨테스트, invariant)으로 다층 검증.",
+    opsEyebrow: "Operational Setup",
+    opsTitle: "운영 보안 셋업",
+    opsDescription:
+      "단일 키 탈취가 즉시 손실로 이어지지 않도록 설계된 다층 통제.",
+    takeaway: "Takeaway",
+    dateCol: "Date",
+    firmCol: "Firm",
+    tierCol: "Tier",
+    scopeCol: "Scope",
+    reportCol: "Report",
+  },
+  en: {
+    back: "← Best Cases",
+    eyebrow: "Security Best Case",
+    auditsEyebrow: "Audits",
+    auditsTitle: (n) => `${n} independent audits`,
+    auditsDescription:
+      "Layered verification across different firms and methodologies (manual, formal, contest, invariant).",
+    opsEyebrow: "Operational Setup",
+    opsTitle: "Operational security setup",
+    opsDescription:
+      "Multi-layer controls designed so a single key compromise does not translate into immediate loss.",
+    takeaway: "Takeaway",
+    dateCol: "Date",
+    firmCol: "Firm",
+    tierCol: "Tier",
+    scopeCol: "Scope",
+    reportCol: "Report",
+  },
+};
 
 function lookupAuditorWebsite(firmName: string): string | undefined {
   const known = AUDIT_FIRMS.find((f) => f.name === firmName);
@@ -12,13 +72,15 @@ function lookupAuditorWebsite(firmName: string): string | undefined {
 }
 
 export function generateStaticParams() {
-  return CASE_STUDIES.map((c) => ({ slug: c.slug }));
+  return LANGS.flatMap((lang) =>
+    CASE_STUDIES.map((c) => ({ lang, slug: c.slug })),
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const cs = getCaseStudy(slug);
@@ -30,9 +92,11 @@ export async function generateMetadata({
 export default async function CaseStudyDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+  if (!isLang(lang)) notFound();
+  const dict = DICT[lang];
   const cs = getCaseStudy(slug);
   if (!cs) {
     notFound();
@@ -41,15 +105,15 @@ export default async function CaseStudyDetailPage({
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
       <Link
-        href="/case-studies"
+        href={`/${lang}/case-studies`}
         className="text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
       >
-        ← Best Cases
+        {dict.back}
       </Link>
 
       <header className="mt-6 mb-10">
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
-          Security Best Case
+          {dict.eyebrow}
         </p>
         <h1 className="mt-3 text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
           {cs.name}
@@ -105,28 +169,28 @@ export default async function CaseStudyDetailPage({
 
       <section className="mb-14">
         <SectionHeader
-          eyebrow="Audits"
-          title={`${cs.audits.length}건의 독립 오딧`}
-          description="서로 다른 펌, 서로 다른 방법론(수동, 정형, 컨테스트, invariant)으로 다층 검증."
+          eyebrow={dict.auditsEyebrow}
+          title={dict.auditsTitle(cs.audits.length)}
+          description={dict.auditsDescription}
         />
         <div className="mt-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
               <tr>
                 <th className="text-left text-[11px] uppercase tracking-widest text-neutral-500 font-medium px-5 py-3">
-                  Date
+                  {dict.dateCol}
                 </th>
                 <th className="text-left text-[11px] uppercase tracking-widest text-neutral-500 font-medium px-5 py-3">
-                  Firm
+                  {dict.firmCol}
                 </th>
                 <th className="text-left text-[11px] uppercase tracking-widest text-neutral-500 font-medium px-5 py-3">
-                  Tier
+                  {dict.tierCol}
                 </th>
                 <th className="text-left text-[11px] uppercase tracking-widest text-neutral-500 font-medium px-5 py-3">
-                  Scope
+                  {dict.scopeCol}
                 </th>
                 <th className="text-left text-[11px] uppercase tracking-widest text-neutral-500 font-medium px-5 py-3">
-                  Report
+                  {dict.reportCol}
                 </th>
               </tr>
             </thead>
@@ -165,7 +229,9 @@ export default async function CaseStudyDetailPage({
                     {a.tier ? (
                       <TierBadge tier={a.tier} />
                     ) : (
-                      <span className="text-neutral-400 dark:text-neutral-600 text-xs">—</span>
+                      <span className="text-neutral-400 dark:text-neutral-600 text-xs">
+                        —
+                      </span>
                     )}
                   </td>
                   <td className="px-5 py-3 text-neutral-600 dark:text-neutral-400">
@@ -182,7 +248,9 @@ export default async function CaseStudyDetailPage({
                         PDF →
                       </a>
                     ) : (
-                      <span className="text-neutral-400 dark:text-neutral-600 text-xs">—</span>
+                      <span className="text-neutral-400 dark:text-neutral-600 text-xs">
+                        —
+                      </span>
                     )}
                   </td>
                 </tr>
@@ -194,9 +262,9 @@ export default async function CaseStudyDetailPage({
 
       <section className="mb-14 space-y-8">
         <SectionHeader
-          eyebrow="Operational Setup"
-          title="운영 보안 셋업"
-          description="단일 키 탈취가 즉시 손실로 이어지지 않도록 설계된 다층 통제."
+          eyebrow={dict.opsEyebrow}
+          title={dict.opsTitle}
+          description={dict.opsDescription}
         />
         {cs.groups.map((g) => (
           <div
@@ -228,7 +296,7 @@ export default async function CaseStudyDetailPage({
 
       <section className="rounded-xl border border-neutral-900 bg-neutral-900 text-neutral-50 p-8">
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 font-medium">
-          Takeaway
+          {dict.takeaway}
         </p>
         <p className="mt-3 text-lg leading-relaxed">{cs.takeaway}</p>
       </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import {
   getContent,
   PROJECT_CONTENT,
@@ -18,8 +18,114 @@ import type {
   PrepItem,
   ResponderView,
 } from "@/lib/incident-response";
+import { isLang, type Lang } from "@/lib/i18n";
+import { notFound } from "next/navigation";
 
-export default function IncidentResponsePage() {
+const DICT: Readonly<
+  Record<
+    Lang,
+    {
+      eyebrow: string;
+      title: string;
+      description: string;
+      toggleProject: string;
+      toggleIndividual: string;
+      groups: string;
+      steps: string;
+      prepEyebrow: string;
+      prepTitleProject: string;
+      prepTitleIndividual: string;
+      prepDescProject: string;
+      prepDescIndividual: string;
+      flowEyebrow: string;
+      flowTitleProject: string;
+      flowTitleIndividual: string;
+      flowDescProject: string;
+      flowDescIndividual: string;
+      sealEyebrow: string;
+      sealTitle: string;
+      sealDescription: string;
+      sealMembersTitle: string;
+      sealMembersVerified: string;
+      sealMembersDescription: string;
+    }
+  >
+> = {
+  ko: {
+    eyebrow: "Operational Security & Incident Response",
+    title: "운영 보안과 사고 대응",
+    description:
+      "사고는 막을 수 없지만 손실은 줄일 수 있습니다. 사전 준비, 사고 발생 시 플로우, 그리고 회수 전략을 정리합니다. 프로젝트 운영자와 개인 사용자의 시각이 다르므로 토글로 전환해서 보세요.",
+    toggleProject: "프로젝트 단위",
+    toggleIndividual: "개인 단위",
+    groups: "groups",
+    steps: "steps",
+    prepEyebrow: "Preparation",
+    prepTitleProject: "사전 준비 (프로젝트)",
+    prepTitleIndividual: "사전 준비 (개인)",
+    prepDescProject:
+      "사고는 첫 5분 안에 결정됩니다. 그 5분이 자동화되어 있어야 합니다.",
+    prepDescIndividual:
+      "사고가 터지면 30분 안에 회수 가능성이 거의 결정됩니다. 그 30분을 사기 위해 평소에 준비합니다.",
+    flowEyebrow: "Response Flow",
+    flowTitleProject: "사고 대응 플로우 (프로젝트)",
+    flowTitleIndividual: "사고 대응 플로우 (개인)",
+    flowDescProject:
+      "Detect → Triage → Contain → Investigate → Communicate → Recover → Post-mortem",
+    flowDescIndividual:
+      "인지 → 잔여 자산 이동 → 신고 → 추적 → 침해 분석 → 공식 신고",
+    sealEyebrow: "Security Alliance",
+    sealTitle: "SEAL Alliance",
+    sealDescription:
+      "samczsun과 다수의 화이트햇이 주축인 비영리 보안 연합. 사고 시 가장 빠르게 도달 가능한 화이트햇 풀이며, 프로젝트와 개인 모두에 무료로 열려 있습니다.",
+    sealMembersTitle: "SEAL 911 Members",
+    sealMembersVerified: "verified",
+    sealMembersDescription:
+      "SEAL 911은 invite-only 자원봉사 조직입니다. 멤버 다수가 OtterSec, Hypernative, OpenZeppelin, Wintermute, Binance, StarkWare 등 메이저 보안 펌과 인프라 팀에서 활동 중이며, 사고 시 신속한 트리아지를 제공합니다.",
+  },
+  en: {
+    eyebrow: "Operational Security & Incident Response",
+    title: "Operational security and incident response",
+    description:
+      "You can not always prevent an incident, but you can shrink the loss. Preparation, response flow, and recovery strategy. Project operators and individual users have different perspectives, so use the toggle to switch views.",
+    toggleProject: "Project",
+    toggleIndividual: "Individual",
+    groups: "groups",
+    steps: "steps",
+    prepEyebrow: "Preparation",
+    prepTitleProject: "Preparation (Project)",
+    prepTitleIndividual: "Preparation (Individual)",
+    prepDescProject:
+      "The first five minutes decide an incident. Those five minutes need to be automated.",
+    prepDescIndividual:
+      "Once an incident hits, recovery odds are largely decided in 30 minutes. Preparation is what buys those 30 minutes.",
+    flowEyebrow: "Response Flow",
+    flowTitleProject: "Response Flow (Project)",
+    flowTitleIndividual: "Response Flow (Individual)",
+    flowDescProject:
+      "Detect → Triage → Contain → Investigate → Communicate → Recover → Post-mortem",
+    flowDescIndividual:
+      "Detect → Sweep → Report → Track → Forensics → Formal report",
+    sealEyebrow: "Security Alliance",
+    sealTitle: "SEAL Alliance",
+    sealDescription:
+      "A non-profit security coalition led by samczsun and a network of whitehats. The fastest whitehat pool to reach during an incident, free for both projects and individuals.",
+    sealMembersTitle: "SEAL 911 Members",
+    sealMembersVerified: "verified",
+    sealMembersDescription:
+      "SEAL 911 is an invite-only volunteer organization. Many members work at major security firms and infrastructure teams (OtterSec, Hypernative, OpenZeppelin, Wintermute, Binance, StarkWare, etc.) and provide rapid triage during incidents.",
+  },
+};
+
+export default function IncidentResponsePage({
+  params,
+}: {
+  readonly params: Promise<{ lang: string }>;
+}) {
+  const { lang } = use(params);
+  if (!isLang(lang)) notFound();
+  const dict = DICT[lang];
+
   const [view, setView] = useState<ResponderView>("project");
   const content = getContent(view);
 
@@ -27,45 +133,43 @@ export default function IncidentResponsePage() {
     <div className="mx-auto max-w-6xl px-6 py-16">
       <header className="mb-10">
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
-          Operational Security & Incident Response
+          {dict.eyebrow}
         </p>
         <h1 className="mt-3 text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-          운영 보안과 사고 대응
+          {dict.title}
         </h1>
         <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
-          사고는 막을 수 없지만 손실은 줄일 수 있습니다. 사전 준비, 사고 발생 시
-          플로우, 그리고 회수 전략을 정리합니다. 프로젝트 운영자와 개인 사용자의
-          시각이 다르므로 토글로 전환해서 보세요.
+          {dict.description}
         </p>
 
         <div className="mt-8 inline-flex rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 p-1">
           <ToggleButton
             active={view === "project"}
             onClick={() => setView("project")}
-            label="프로젝트 단위"
-            sub={`${PROJECT_CONTENT.preparation.length} groups / ${PROJECT_CONTENT.flow.length} steps`}
+            label={dict.toggleProject}
+            sub={`${PROJECT_CONTENT.preparation.length} ${dict.groups} / ${PROJECT_CONTENT.flow.length} ${dict.steps}`}
           />
           <ToggleButton
             active={view === "individual"}
             onClick={() => setView("individual")}
-            label="개인 단위"
-            sub={`${INDIVIDUAL_CONTENT.preparation.length} groups / ${INDIVIDUAL_CONTENT.flow.length} steps`}
+            label={dict.toggleIndividual}
+            sub={`${INDIVIDUAL_CONTENT.preparation.length} ${dict.groups} / ${INDIVIDUAL_CONTENT.flow.length} ${dict.steps}`}
           />
         </div>
       </header>
 
-      <SealSection currentView={view} />
+      <SealSection currentView={view} dict={dict} />
 
       <section className="mt-16">
         <SectionHeader
-          eyebrow="Preparation"
+          eyebrow={dict.prepEyebrow}
           title={
-            view === "project" ? "사전 준비 (프로젝트)" : "사전 준비 (개인)"
+            view === "project"
+              ? dict.prepTitleProject
+              : dict.prepTitleIndividual
           }
           description={
-            view === "project"
-              ? "사고는 첫 5분 안에 결정됩니다. 그 5분이 자동화되어 있어야 합니다."
-              : "사고가 터지면 30분 안에 회수 가능성이 거의 결정됩니다. 그 30분을 사기 위해 평소에 준비합니다."
+            view === "project" ? dict.prepDescProject : dict.prepDescIndividual
           }
         />
         <div className="mt-6 space-y-8">
@@ -77,20 +181,18 @@ export default function IncidentResponsePage() {
 
       <section className="mt-16">
         <SectionHeader
-          eyebrow="Response Flow"
+          eyebrow={dict.flowEyebrow}
           title={
             view === "project"
-              ? "사고 대응 플로우 (프로젝트)"
-              : "사고 대응 플로우 (개인)"
+              ? dict.flowTitleProject
+              : dict.flowTitleIndividual
           }
           description={
-            view === "project"
-              ? "Detect → Triage → Contain → Investigate → Communicate → Recover → Post-mortem"
-              : "인지 → 잔여 자산 이동 → 신고 → 추적 → 침해 분석 → 공식 신고"
+            view === "project" ? dict.flowDescProject : dict.flowDescIndividual
           }
         />
         <ol className="mt-8 relative">
-          <div className="absolute left-3 top-2 bottom-2 w-px bg-neutral-200" />
+          <div className="absolute left-3 top-2 bottom-2 w-px bg-neutral-200 dark:bg-neutral-800" />
           {content.flow.map((step, idx) => (
             <FlowStepCard key={step.id} step={step} index={idx} />
           ))}
@@ -137,7 +239,13 @@ function ToggleButton({
   );
 }
 
-function SealSection({ currentView }: { readonly currentView: ResponderView }) {
+function SealSection({
+  currentView,
+  dict,
+}: {
+  readonly currentView: ResponderView;
+  readonly dict: (typeof DICT)[Lang];
+}) {
   const visible = SEAL_PROGRAMS.filter(
     (p) => p.audience === "both" || p.audience === currentView,
   );
@@ -159,15 +267,13 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
           />
           <div>
             <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
-              Security Alliance
+              {dict.sealEyebrow}
             </p>
             <h2 className="mt-1 text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-              SEAL Alliance
+              {dict.sealTitle}
             </h2>
             <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl">
-              samczsun과 다수의 화이트햇이 주축인 비영리 보안 연합. 사고 시 가장
-              빠르게 도달 가능한 화이트햇 풀이며, 프로젝트와 개인 모두에 무료로
-              열려 있습니다.
+              {dict.sealDescription}
             </p>
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs">
               {SEAL_LINKS.map((link) => (
@@ -228,17 +334,14 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
       <div className="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800">
         <div className="flex items-baseline justify-between mb-4">
           <h3 className="text-[11px] uppercase tracking-[0.18em] font-medium text-neutral-500">
-            SEAL 911 Members
+            {dict.sealMembersTitle}
           </h3>
           <span className="text-[11px] tabular-nums text-neutral-400 dark:text-neutral-600">
-            {SEAL_MEMBERS.length} verified
+            {SEAL_MEMBERS.length} {dict.sealMembersVerified}
           </span>
         </div>
         <p className="text-xs text-neutral-500 leading-relaxed mb-4">
-          SEAL 911은 invite-only 자원봉사 조직입니다. 멤버 다수가 OtterSec,
-          Hypernative, OpenZeppelin, Wintermute, Binance, StarkWare 등 메이저
-          보안 펌과 인프라 팀에서 활동 중이며, 사고 시 신속한 트리아지를
-          제공합니다.
+          {dict.sealMembersDescription}
         </p>
         <div className="grid gap-1.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {SEAL_MEMBERS.map((m) => {
