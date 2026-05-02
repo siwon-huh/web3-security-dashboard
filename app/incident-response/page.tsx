@@ -59,8 +59,8 @@ export default function IncidentResponsePage() {
           }
           description={
             view === "project"
-              ? "사고는 첫 5분 안에 결정된다. 그 5분이 자동화되어 있어야 한다."
-              : "사고가 터지면 30분 안에 회수 가능성이 거의 결정된다. 그 30분을 사기 위해 평소에 준비한다."
+              ? "사고는 첫 5분 안에 결정됩니다. 그 5분이 자동화되어 있어야 합니다."
+              : "사고가 터지면 30분 안에 회수 가능성이 거의 결정됩니다. 그 30분을 사기 위해 평소에 준비합니다."
           }
         />
         <div className="mt-6 space-y-8">
@@ -147,7 +147,7 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
           <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl">
             samczsun과 다수의 화이트햇이 주축인 비영리 보안 연합. 사고 시 가장
             빠르게 도달 가능한 화이트햇 풀이며, 프로젝트와 개인 모두에 무료로
-            열려 있다.
+            열려 있습니다.
           </p>
         </div>
         <a
