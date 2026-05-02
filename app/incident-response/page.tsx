@@ -174,10 +174,17 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
               <div className="flex items-center gap-2.5 min-w-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://www.google.com/s2/favicons?domain=securityalliance.org&sz=64"
+                  src={p.logoLight}
                   alt=""
                   loading="lazy"
-                  className="h-5 w-5 rounded shrink-0 object-contain"
+                  className="h-6 w-6 shrink-0 object-contain dark:hidden"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={p.logoDark}
+                  alt=""
+                  loading="lazy"
+                  className="h-6 w-6 shrink-0 object-contain hidden dark:block"
                 />
                 <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 truncate">
                   {p.name}

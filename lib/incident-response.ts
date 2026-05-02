@@ -36,6 +36,8 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
   audience: ResponderView | "both";
   description: string;
   url: string;
+  logoLight: string;
+  logoDark: string;
 }> = [
   {
     name: "SEAL 911",
@@ -43,6 +45,8 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
     description:
       "24/7 화이트햇 핫라인. Telegram 봇으로 신고하면 익명 화이트햇 풀이 즉시 트리아지하고 프로젝트 또는 거래소 컨택을 연결합니다. 개인 도용 사고와 프로토콜 인시던트 양쪽에서 가장 빠른 진입점.",
     url: "https://t.me/seal_911_bot",
+    logoLight: "https://static.securityalliance.org/logos/seal-911-blue.svg",
+    logoDark: "https://static.securityalliance.org/logos/seal-911-white.svg",
   },
   {
     name: "SEAL Whitehat Safe Harbor",
@@ -50,6 +54,8 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
     description:
       "프로토콜이 사전에 채택할 수 있는 표준 화이트햇 면책 조항. 사고 발생 시 화이트햇이 자금을 회수해 반환하는 행위에 대한 법적 안전망을 제공합니다. 가입은 거버넌스 또는 권한 보유자의 채택 선언으로 진행.",
     url: "https://github.com/security-alliance/safe-harbor",
+    logoLight: "https://static.securityalliance.org/logos/safe-harbor-blue.svg",
+    logoDark: "https://static.securityalliance.org/logos/safe-harbor-white.svg",
   },
   {
     name: "SEAL Wargames",
@@ -57,6 +63,10 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
     description:
       "프로토콜 팀을 대상으로 한 인시던트 대응 시뮬레이션. 가상의 익스플로잇 시나리오에서 팀의 워룸, 멀티시그 동원, 커뮤니케이션 전 과정을 평가합니다. 메이저 프로토콜이 정기적으로 참여.",
     url: "https://securityalliance.org/wargames",
+    logoLight:
+      "https://static.securityalliance.org/logos/seal-wargames-blue.svg",
+    logoDark:
+      "https://static.securityalliance.org/logos/seal-wargames-white.svg",
   },
   {
     name: "SEAL Frameworks",
@@ -64,6 +74,10 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
     description:
       "전통 인포섹과 Web3 보안 리서치의 검증된 프랙티스를 단일 오픈소스 라이브러리로 정리한 벤더 중립 표준 모음. 운영 보안, 지갑 관리, 인시던트 대응, DPRK 위협 대응 등 12개 이상의 프레임워크를 제공하며 모듈식으로 점진 도입할 수 있어 신생 프로젝트와 개인 모두에게 베이스라인이 됩니다. 메이저 프로토콜 다수가 채택 중.",
     url: "https://frameworks.securityalliance.org",
+    logoLight:
+      "https://static.securityalliance.org/logos/seal-frameworks-blue.svg",
+    logoDark:
+      "https://static.securityalliance.org/logos/seal-frameworks-white.svg",
   },
   {
     name: "SEAL Certifications",
@@ -71,6 +85,10 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
     description:
       "크립토 조직이 실제로 마주하는 위협을 기준으로 설계된 모듈형 인증 프로그램. 인시던트 대응, 멀티시그 운영, 트레저리 보안, 워크스페이스 보안, DNS 관리 등 5개 도메인을 커버합니다. 인증된 오딧터가 평가하고 결과는 EAS(Ethereum Attestation Service)로 온체인에 영구 기록되어 누구나 검증 가능. 현재 베타로 15개 이상의 조직이 파일럿 참여 중.",
     url: "https://securityalliance.org/our-work/certifications",
+    logoLight:
+      "https://static.securityalliance.org/logos/seal-certifications-blue.svg",
+    logoDark:
+      "https://static.securityalliance.org/logos/seal-certifications-white.svg",
   },
   {
     name: "SEAL Intel",
@@ -78,6 +96,8 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
     description:
       "크립토 생태계 전반의 위협 인텔리전스. 피싱 캠페인, 지갑 드레이너 멀웨어, 국가 단위 공격 등에 대한 실시간 알림을 제공합니다. 300개 이상의 위협 리포트와 20만 개 이상의 악성 도메인 데이터베이스를 운영하며 SDK도 공개. MetaMask, Phantom, WalletConnect 같은 메이저 지갑이 이 인텔을 직접 통합해 사용자에게 노출되는 위협을 차단합니다.",
     url: "https://securityalliance.org/our-work/seal-intel",
+    logoLight: "https://static.securityalliance.org/logos/seal-intel-blue.svg",
+    logoDark: "https://static.securityalliance.org/logos/seal-intel-white.svg",
   },
   {
     name: "Lazarus Group Tracker",
@@ -85,6 +105,10 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
     description:
       "북한(DPRK) 공작원이 크립토 업계에 IT 워커로 침투하는 패턴을 추적하고 공개하는 리소스. 60명 이상의 운영자 프로파일과 알려진 별칭을 정리해 놓았으며, 누적 $6B 이상의 자금 탈취가 연결됐다고 추정됩니다. 거래소, 프로토콜, 법집행기관이 채용 단계에서 스크리닝 자료로 활용 중. 채용 직전 후보 신원은 반드시 이 데이터베이스에 대조해 보는 것이 표준이 되어 가는 추세입니다.",
     url: "https://securityalliance.org/our-work/lazarus-group",
+    logoLight:
+      "https://static.securityalliance.org/logos/lazarus-group-light.png",
+    logoDark:
+      "https://static.securityalliance.org/logos/lazarus-group-dark.png",
   },
 ];
 
