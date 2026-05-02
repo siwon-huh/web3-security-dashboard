@@ -6,6 +6,9 @@ import {
   PROJECT_CONTENT,
   INDIVIDUAL_CONTENT,
   SEAL_PROGRAMS,
+  SEAL_BRAND,
+  SEAL_LINKS,
+  SEAL_MEMBERS,
 } from "@/lib/incident-response";
 import type {
   FlowStep,
@@ -138,28 +141,46 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
   );
   return (
     <section className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
-      <div className="flex items-baseline justify-between">
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
-            Security Alliance
-          </p>
-          <h2 className="mt-2 text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-            SEAL Alliance
-          </h2>
-          <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl">
-            samczsun과 다수의 화이트햇이 주축인 비영리 보안 연합. 사고 시 가장
-            빠르게 도달 가능한 화이트햇 풀이며, 프로젝트와 개인 모두에 무료로
-            열려 있습니다.
-          </p>
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start gap-4 min-w-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={SEAL_BRAND.logoLight}
+            alt="SEAL Alliance"
+            className="h-12 w-12 shrink-0 object-contain dark:hidden"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={SEAL_BRAND.logoDark}
+            alt="SEAL Alliance"
+            className="h-12 w-12 shrink-0 object-contain hidden dark:block"
+          />
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
+              Security Alliance
+            </p>
+            <h2 className="mt-1 text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
+              SEAL Alliance
+            </h2>
+            <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl">
+              samczsun과 다수의 화이트햇이 주축인 비영리 보안 연합. 사고 시 가장
+              빠르게 도달 가능한 화이트햇 풀이며, 프로젝트와 개인 모두에 무료로 열려 있습니다.
+            </p>
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs">
+              {SEAL_LINKS.map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4"
+                >
+                  {link.label} →
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-        <a
-          href="https://www.securityalliance.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 shrink-0 ml-4"
-        >
-          securityalliance.org →
-        </a>
       </div>
       <div className="mt-5 grid gap-3 md:grid-cols-2">
         {visible.map((p) => (
@@ -199,6 +220,38 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
             </p>
           </a>
         ))}
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+        <div className="flex items-baseline justify-between mb-4">
+          <h3 className="text-[11px] uppercase tracking-[0.18em] font-medium text-neutral-500">
+            SEAL 911 Members
+          </h3>
+          <span className="text-[11px] tabular-nums text-neutral-400 dark:text-neutral-600">
+            {SEAL_MEMBERS.length} verified
+          </span>
+        </div>
+        <p className="text-xs text-neutral-500 leading-relaxed mb-4">
+          SEAL 911은 invite-only 자원봉사 조직입니다. 멤버 다수가 OtterSec,
+          Hypernative, OpenZeppelin, Wintermute, Binance, StarkWare 등 메이저
+          보안 펌과 인프라 팀에서 활동 중이며, 사고 시 신속한 트리아지를
+          제공합니다.
+        </p>
+        <div className="grid gap-1.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {SEAL_MEMBERS.map((m) => (
+            <div
+              key={m.name}
+              className="flex items-baseline justify-between gap-2 text-xs px-2.5 py-1.5 rounded border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900"
+            >
+              <span className="font-medium text-neutral-900 dark:text-neutral-50 truncate">
+                {m.name}
+              </span>
+              <span className="text-neutral-500 truncate text-[10px]">
+                {m.affiliation}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

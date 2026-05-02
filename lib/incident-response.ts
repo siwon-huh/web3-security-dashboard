@@ -112,6 +112,55 @@ export const SEAL_PROGRAMS: ReadonlyArray<{
   },
 ];
 
+export const SEAL_BRAND = {
+  logoLight: "https://static.securityalliance.org/logos/seal-blue.svg",
+  logoDark: "https://static.securityalliance.org/logos/seal-white.svg",
+};
+
+export const SEAL_LINKS: ReadonlyArray<{
+  label: string;
+  url: string;
+}> = [
+  { label: "securityalliance.org", url: "https://securityalliance.org" },
+  { label: "X (@seal_911)", url: "https://x.com/seal_911" },
+  { label: "Telegram bot", url: "https://t.me/seal_911_bot" },
+  { label: "GitHub", url: "https://github.com/security-alliance" },
+];
+
+export const SEAL_MEMBERS: ReadonlyArray<{
+  name: string;
+  affiliation: string;
+}> = [
+  { name: "samczsun", affiliation: "Security Alliance" },
+  { name: "0xc0ffeebabe", affiliation: "Independent" },
+  { name: "pcaversaccio", affiliation: "Independent" },
+  { name: "Nick", affiliation: "Independent" },
+  { name: "Ross", affiliation: "Independent" },
+  { name: "Tay", affiliation: "Independent" },
+  { name: "tanuki_42", affiliation: "Independent" },
+  { name: "Robert", affiliation: "OtterSec" },
+  { name: "Michael", affiliation: "OtterSec" },
+  { name: "Miguel", affiliation: "Tracelon" },
+  { name: "Lauren", affiliation: "Tracelon" },
+  { name: "Josh", affiliation: "Cryptoforensic Investigators" },
+  { name: "Julia", affiliation: "zeroShadow" },
+  { name: "SunSec", affiliation: "DefiHackLabs" },
+  { name: "Niv", affiliation: "Hexagate" },
+  { name: "Dan", affiliation: "Hypernative" },
+  { name: "Vazi", affiliation: "Hypernative" },
+  { name: "monsoon", affiliation: "OpenZeppelin" },
+  { name: "Daniel", affiliation: "Monad" },
+  { name: "Andrew", affiliation: "Privy" },
+  { name: "Igor", affiliation: "Wintermute" },
+  { name: "Fade", affiliation: "Wintermute" },
+  { name: "Gabru", affiliation: "Binance" },
+  { name: "Zollua", affiliation: "Binance" },
+  { name: "Oussama", affiliation: "Pump" },
+  { name: "Simon", affiliation: "Elliptic" },
+  { name: "Alex", affiliation: "Sui Foundation" },
+  { name: "Lotem", affiliation: "StarkWare" },
+];
+
 export const PROJECT_CONTENT: ViewContent = {
   preparation: [
     {
