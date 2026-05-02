@@ -164,7 +164,7 @@ export const SEAL_MEMBERS: ReadonlyArray<{
   { name: "Tay", affiliation: "Independent", twitter: "tayvano_" },
   { name: "tanuki_42", affiliation: "Independent", twitter: "tanuki_42_" },
   { name: "Robert", affiliation: "OtterSec" },
-  { name: "Michael", affiliation: "OtterSec" },
+  { name: "Michael", affiliation: "OtterSec", twitter: "_mixy1" },
   { name: "Miguel", affiliation: "Tracelon" },
   { name: "Lauren", affiliation: "Tracelon" },
   { name: "Josh", affiliation: "Cryptoforensic Investigators" },
