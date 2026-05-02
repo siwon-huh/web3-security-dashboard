@@ -1,6 +1,12 @@
 const LOGO_OVERRIDES: Readonly<Record<string, string>> = {
   "Sigma Prime":
     "https://pbs.twimg.com/profile_images/1106229297151303681/EuqfU4v4_400x400.png",
+  Securr:
+    "https://pbs.twimg.com/profile_images/1637710098452627459/QvN9dsCg_400x400.jpg",
+  BlockApex:
+    "https://pbs.twimg.com/profile_images/1737861055899107328/5In51neT_400x400.jpg",
+  "Blaize.security":
+    "https://pbs.twimg.com/profile_images/1707354809731301376/O1X2kTTy_400x400.jpg",
 };
 
 export function firmLogoUrl(
