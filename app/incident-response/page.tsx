@@ -246,9 +246,9 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
             const orgLogo = affiliationUrl
               ? firmLogoUrl(affiliationUrl, 64, m.affiliation)
               : "";
-            const avatarUrl = m.twitter
-              ? `https://unavatar.io/x/${m.twitter}`
-              : "";
+            const avatarUrl =
+              m.avatarUrl ??
+              (m.twitter ? `https://unavatar.io/x/${m.twitter}` : "");
             const nameNode = m.twitter ? (
               <a
                 href={`https://x.com/${m.twitter}`}

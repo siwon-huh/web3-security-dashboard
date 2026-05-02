@@ -151,6 +151,8 @@ export const SEAL_MEMBERS: ReadonlyArray<{
   name: string;
   affiliation: string;
   twitter?: string;
+  avatarUrl?: string;
+  profileUrl?: string;
 }> = [
   { name: "samczsun", affiliation: "Security Alliance", twitter: "samczsun" },
   { name: "0xc0ffeebabe", affiliation: "Independent" },
@@ -163,26 +165,31 @@ export const SEAL_MEMBERS: ReadonlyArray<{
   { name: "Ross", affiliation: "Independent" },
   { name: "Tay", affiliation: "Independent", twitter: "tayvano_" },
   { name: "tanuki_42", affiliation: "Independent", twitter: "tanuki_42_" },
-  { name: "Robert", affiliation: "OtterSec" },
+  { name: "Robert", affiliation: "OtterSec", twitter: "NotDeGhost" },
   { name: "Michael", affiliation: "OtterSec", twitter: "_mixy1" },
-  { name: "Miguel", affiliation: "Tracelon" },
+  { name: "Miguel", affiliation: "Tracelon", twitter: "Miguel_Torrexs" },
   { name: "Lauren", affiliation: "Tracelon" },
   { name: "Josh", affiliation: "Cryptoforensic Investigators" },
   { name: "Julia", affiliation: "zeroShadow", twitter: "julia27eth" },
   { name: "SunSec", affiliation: "DefiHackLabs", twitter: "1nf0s3cpt" },
-  { name: "Niv", affiliation: "Hexagate" },
-  { name: "Dan", affiliation: "Hypernative" },
-  { name: "Vazi", affiliation: "Hypernative" },
-  { name: "monsoon", affiliation: "OpenZeppelin" },
-  { name: "Daniel", affiliation: "Monad" },
-  { name: "Andrew", affiliation: "Privy" },
-  { name: "Igor", affiliation: "Wintermute" },
-  { name: "Fade", affiliation: "Wintermute" },
+  { name: "Niv", affiliation: "Hexagate", twitter: "invlpgtbl" },
+  { name: "Dan", affiliation: "Hypernative", twitter: "gbvpzffd2r" },
+  { name: "Vazi", affiliation: "Hypernative", twitter: "0xVazi" },
+  { name: "monsoon", affiliation: "OpenZeppelin", twitter: "0xmonsoon" },
+  { name: "Daniel", affiliation: "Monad", twitter: "danielvf" },
+  { name: "Andrew", affiliation: "Privy", twitter: "AndrewMohawk" },
+  { name: "Igor", affiliation: "Wintermute", twitter: "FrankResearcher" },
+  { name: "Fade", affiliation: "Wintermute", twitter: "0xf4d3" },
   { name: "Gabru", affiliation: "Binance" },
   { name: "Zollua", affiliation: "Binance" },
-  { name: "Oussama", affiliation: "Pump" },
+  { name: "Oussama", affiliation: "Pump", twitter: "amriunix" },
   { name: "Simon", affiliation: "Elliptic" },
-  { name: "Alex", affiliation: "Sui Foundation" },
+  {
+    name: "Alex",
+    affiliation: "Sui Foundation",
+    avatarUrl:
+      "https://media.licdn.com/dms/image/v2/D4D03AQGAK2Cz1Exn4A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1681832209167?e=1779321600&v=beta&t=slR5JbfN4m5_I7IeCl4OW97r6Z0KCVJPd2_Id6yQgnU",
+  },
   { name: "Lotem", affiliation: "StarkWare" },
 ];
 
