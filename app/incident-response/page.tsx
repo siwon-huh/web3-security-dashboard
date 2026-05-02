@@ -9,7 +9,9 @@ import {
   SEAL_BRAND,
   SEAL_LINKS,
   SEAL_MEMBERS,
+  AFFILIATION_URLS,
 } from "@/lib/incident-response";
+import { firmLogoUrl } from "@/lib/logo";
 import type {
   FlowStep,
   PrepGroup,
@@ -164,7 +166,8 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
             </h2>
             <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl">
               samczsun과 다수의 화이트햇이 주축인 비영리 보안 연합. 사고 시 가장
-              빠르게 도달 가능한 화이트햇 풀이며, 프로젝트와 개인 모두에 무료로 열려 있습니다.
+              빠르게 도달 가능한 화이트햇 풀이며, 프로젝트와 개인 모두에 무료로
+              열려 있습니다.
             </p>
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs">
               {SEAL_LINKS.map((link) => (
@@ -238,19 +241,48 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
           제공합니다.
         </p>
         <div className="grid gap-1.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {SEAL_MEMBERS.map((m) => (
-            <div
-              key={m.name}
-              className="flex items-baseline justify-between gap-2 text-xs px-2.5 py-1.5 rounded border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900"
-            >
+          {SEAL_MEMBERS.map((m) => {
+            const affiliationUrl = AFFILIATION_URLS[m.affiliation];
+            const orgLogo = affiliationUrl
+              ? firmLogoUrl(affiliationUrl, 64, m.affiliation)
+              : "";
+            const nameNode = m.twitter ? (
+              <a
+                href={`https://x.com/${m.twitter}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-neutral-900 dark:text-neutral-50 truncate hover:underline underline-offset-4"
+              >
+                {m.name}
+              </a>
+            ) : (
               <span className="font-medium text-neutral-900 dark:text-neutral-50 truncate">
                 {m.name}
               </span>
-              <span className="text-neutral-500 truncate text-[10px]">
-                {m.affiliation}
-              </span>
-            </div>
-          ))}
+            );
+            return (
+              <div
+                key={m.name}
+                className="flex items-center justify-between gap-2 text-xs px-2.5 py-1.5 rounded border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  {orgLogo && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={orgLogo}
+                      alt=""
+                      loading="lazy"
+                      className="h-3.5 w-3.5 rounded shrink-0 object-contain"
+                    />
+                  )}
+                  {nameNode}
+                </div>
+                <span className="text-neutral-500 truncate text-[10px] shrink-0">
+                  {m.affiliation}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

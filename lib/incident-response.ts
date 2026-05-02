@@ -127,24 +127,53 @@ export const SEAL_LINKS: ReadonlyArray<{
   { label: "GitHub", url: "https://github.com/security-alliance" },
 ];
 
+export const AFFILIATION_URLS: Readonly<Record<string, string>> = {
+  "Security Alliance": "https://securityalliance.org",
+  OtterSec: "https://osec.io",
+  Tracelon: "https://tracelon.com",
+  "Cryptoforensic Investigators": "https://cryptoforensic.com",
+  zeroShadow: "https://www.zeroshadow.io",
+  DefiHackLabs: "https://defihacklabs.io",
+  Hexagate: "https://www.chainalysis.com/product/hexagate",
+  Hypernative: "https://www.hypernative.io",
+  OpenZeppelin: "https://www.openzeppelin.com",
+  Monad: "https://www.monad.xyz",
+  Privy: "https://www.privy.io",
+  Wintermute: "https://www.wintermute.com",
+  Binance: "https://www.binance.com",
+  Pump: "https://pump.fun",
+  Elliptic: "https://www.elliptic.co",
+  "Sui Foundation": "https://sui.io",
+  StarkWare: "https://starkware.co",
+};
+
 export const SEAL_MEMBERS: ReadonlyArray<{
   name: string;
   affiliation: string;
+  twitter?: string;
 }> = [
-  { name: "samczsun", affiliation: "Security Alliance" },
-  { name: "0xc0ffeebabe", affiliation: "Independent" },
-  { name: "pcaversaccio", affiliation: "Independent" },
+  { name: "samczsun", affiliation: "Security Alliance", twitter: "samczsun" },
+  {
+    name: "0xc0ffeebabe",
+    affiliation: "Independent",
+    twitter: "0xc0ffeebabe",
+  },
+  {
+    name: "pcaversaccio",
+    affiliation: "Independent",
+    twitter: "pcaversaccio",
+  },
   { name: "Nick", affiliation: "Independent" },
   { name: "Ross", affiliation: "Independent" },
-  { name: "Tay", affiliation: "Independent" },
-  { name: "tanuki_42", affiliation: "Independent" },
+  { name: "Tay", affiliation: "Independent", twitter: "tayvano_" },
+  { name: "tanuki_42", affiliation: "Independent", twitter: "tanuki_42_" },
   { name: "Robert", affiliation: "OtterSec" },
   { name: "Michael", affiliation: "OtterSec" },
   { name: "Miguel", affiliation: "Tracelon" },
   { name: "Lauren", affiliation: "Tracelon" },
   { name: "Josh", affiliation: "Cryptoforensic Investigators" },
   { name: "Julia", affiliation: "zeroShadow" },
-  { name: "SunSec", affiliation: "DefiHackLabs" },
+  { name: "SunSec", affiliation: "DefiHackLabs", twitter: "1nf0s3cpt" },
   { name: "Niv", affiliation: "Hexagate" },
   { name: "Dan", affiliation: "Hypernative" },
   { name: "Vazi", affiliation: "Hypernative" },
