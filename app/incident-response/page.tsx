@@ -246,6 +246,9 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
             const orgLogo = affiliationUrl
               ? firmLogoUrl(affiliationUrl, 64, m.affiliation)
               : "";
+            const avatarUrl = m.twitter
+              ? `https://unavatar.io/x/${m.twitter}`
+              : "";
             const nameNode = m.twitter ? (
               <a
                 href={`https://x.com/${m.twitter}`}
@@ -266,6 +269,21 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
                 className="flex items-center justify-between gap-2 text-xs px-2.5 py-1.5 rounded border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900"
               >
                 <div className="flex items-center gap-2 min-w-0">
+                  {avatarUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={avatarUrl}
+                      alt=""
+                      loading="lazy"
+                      className="h-4 w-4 rounded-full shrink-0 object-cover"
+                    />
+                  )}
+                  {nameNode}
+                </div>
+                <div className="flex items-center gap-1.5 shrink-0 min-w-0">
+                  <span className="text-neutral-500 truncate text-[10px]">
+                    {m.affiliation}
+                  </span>
                   {orgLogo && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -275,11 +293,7 @@ function SealSection({ currentView }: { readonly currentView: ResponderView }) {
                       className="h-3.5 w-3.5 rounded shrink-0 object-contain"
                     />
                   )}
-                  {nameNode}
                 </div>
-                <span className="text-neutral-500 truncate text-[10px] shrink-0">
-                  {m.affiliation}
-                </span>
               </div>
             );
           })}
