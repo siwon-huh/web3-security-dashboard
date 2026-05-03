@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CASE_STUDIES } from "@/lib/case-studies";
 import { isLang, type Lang } from "@/lib/i18n";
+import { CASE_STUDY_EN } from "@/lib/i18n/case-studies-en";
 import { notFound } from "next/navigation";
 
 export const metadata = {
@@ -55,38 +56,44 @@ export default async function CaseStudiesIndexPage({
       </header>
 
       <div className="grid gap-4 md:grid-cols-2">
-        {CASE_STUDIES.map((cs) => (
-          <Link
-            key={cs.slug}
-            href={`/${lang}/case-studies/${cs.slug}`}
-            className="group block rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 hover:border-neutral-900 hover:shadow-sm transition-all"
-          >
-            <div className="flex items-start justify-between">
-              <div>
-                <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-                  {cs.name}
-                </h2>
-                <p className="text-sm text-neutral-500 mt-0.5">{cs.tagline}</p>
-              </div>
-              <span className="text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-neutral-50 transition-colors text-sm">
-                →
-              </span>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {cs.highlights.slice(0, 4).map((h) => (
-                <span
-                  key={h}
-                  className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 bg-neutral-50 dark:bg-neutral-900"
-                >
-                  {h}
+        {CASE_STUDIES.map((cs) => {
+          const enContent = lang === "en" ? CASE_STUDY_EN[cs.slug] : null;
+          const tagline = enContent?.tagline ?? cs.tagline;
+          const summary = enContent?.summary ?? cs.summary;
+          const highlights = enContent?.highlights ?? cs.highlights;
+          return (
+            <Link
+              key={cs.slug}
+              href={`/${lang}/case-studies/${cs.slug}`}
+              className="group block rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 hover:border-neutral-900 hover:shadow-sm transition-all"
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
+                    {cs.name}
+                  </h2>
+                  <p className="text-sm text-neutral-500 mt-0.5">{tagline}</p>
+                </div>
+                <span className="text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-neutral-50 transition-colors text-sm">
+                  →
                 </span>
-              ))}
-            </div>
-            <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-3">
-              {cs.summary}
-            </p>
-          </Link>
-        ))}
+              </div>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {highlights.slice(0, 4).map((h) => (
+                  <span
+                    key={h}
+                    className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 bg-neutral-50 dark:bg-neutral-900"
+                  >
+                    {h}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-3">
+                {summary}
+              </p>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
