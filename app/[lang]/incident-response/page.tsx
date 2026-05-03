@@ -20,6 +20,7 @@ import type {
 } from "@/lib/incident-response";
 import { isLang, type Lang } from "@/lib/i18n";
 import { notFound } from "next/navigation";
+import { SEAL_PROGRAM_DESCRIPTIONS_EN } from "@/lib/i18n/seal-en";
 
 const DICT: Readonly<
   Record<
@@ -158,7 +159,7 @@ export default function IncidentResponsePage({
         </div>
       </header>
 
-      <SealSection currentView={view} dict={dict} />
+      <SealSection currentView={view} dict={dict} lang={lang} />
 
       <section className="mt-16">
         <SectionHeader
@@ -242,9 +243,11 @@ function ToggleButton({
 function SealSection({
   currentView,
   dict,
+  lang,
 }: {
   readonly currentView: ResponderView;
   readonly dict: (typeof DICT)[Lang];
+  readonly lang: Lang;
 }) {
   const visible = SEAL_PROGRAMS.filter(
     (p) => p.audience === "both" || p.audience === currentView,
@@ -325,7 +328,9 @@ function SealSection({
               </span>
             </div>
             <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {p.description}
+              {lang === "en"
+                ? (SEAL_PROGRAM_DESCRIPTIONS_EN[p.name] ?? p.description)
+                : p.description}
             </p>
           </a>
         ))}

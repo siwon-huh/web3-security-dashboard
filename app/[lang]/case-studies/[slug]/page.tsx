@@ -5,6 +5,7 @@ import { AUDIT_FIRMS } from "@/lib/audit-firms";
 import { firmLogoUrl } from "@/lib/logo";
 import { TierBadge } from "@/components/TierBadge";
 import { isLang, LANGS, type Lang } from "@/lib/i18n";
+import { CASE_STUDY_EN } from "@/lib/i18n/case-studies-en";
 import type { Metadata } from "next";
 
 const DICT: Readonly<
@@ -101,6 +102,11 @@ export default async function CaseStudyDetailPage({
   if (!cs) {
     notFound();
   }
+  const enContent = lang === "en" ? CASE_STUDY_EN[cs.slug] : null;
+  const tagline = enContent?.tagline ?? cs.tagline;
+  const summary = enContent?.summary ?? cs.summary;
+  const highlights = enContent?.highlights ?? cs.highlights;
+  const takeaway = enContent?.takeaway ?? cs.takeaway;
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
@@ -118,7 +124,7 @@ export default async function CaseStudyDetailPage({
         <h1 className="mt-3 text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
           {cs.name}
         </h1>
-        <p className="mt-2 text-lg text-neutral-500">{cs.tagline}</p>
+        <p className="mt-2 text-lg text-neutral-500">{tagline}</p>
 
         <div className="mt-6 flex flex-wrap gap-3 text-sm">
           <a
@@ -152,11 +158,11 @@ export default async function CaseStudyDetailPage({
         </div>
 
         <p className="mt-8 text-neutral-700 dark:text-neutral-300 max-w-3xl leading-relaxed">
-          {cs.summary}
+          {summary}
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          {cs.highlights.map((h) => (
+          {highlights.map((h) => (
             <span
               key={h}
               className="text-xs px-2.5 py-1 rounded-md border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200"
@@ -235,7 +241,7 @@ export default async function CaseStudyDetailPage({
                     )}
                   </td>
                   <td className="px-5 py-3 text-neutral-600 dark:text-neutral-400">
-                    {a.scope ?? ""}
+                    {enContent?.audits[a.firm]?.scope ?? a.scope ?? ""}
                   </td>
                   <td className="px-5 py-3">
                     {a.reportUrl ? (
@@ -266,39 +272,51 @@ export default async function CaseStudyDetailPage({
           title={dict.opsTitle}
           description={dict.opsDescription}
         />
-        {cs.groups.map((g) => (
-          <div
-            key={g.id}
-            className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6"
-          >
-            <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-              {g.title}
-            </h3>
-            <p className="mt-1 text-sm text-neutral-500">{g.description}</p>
-            <ul className="mt-5 space-y-5">
-              {g.features.map((f, idx) => (
-                <li
-                  key={idx}
-                  className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-6 pb-5 border-b border-neutral-100 dark:border-neutral-900 last:border-0 last:pb-0"
-                >
-                  <h4 className="font-medium text-neutral-900 dark:text-neutral-50 leading-snug">
-                    {f.title}
-                  </h4>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                    {f.detail}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {cs.groups.map((g) => {
+          const enGroup = enContent?.groups[g.id];
+          const groupTitle = enGroup?.title ?? g.title;
+          const groupDescription = enGroup?.description ?? g.description;
+          return (
+            <div
+              key={g.id}
+              className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6"
+            >
+              <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
+                {groupTitle}
+              </h3>
+              <p className="mt-1 text-sm text-neutral-500">
+                {groupDescription}
+              </p>
+              <ul className="mt-5 space-y-5">
+                {g.features.map((f, idx) => {
+                  const enFeature = enGroup?.features[f.title];
+                  const featureTitle = enFeature?.title ?? f.title;
+                  const featureDetail = enFeature?.detail ?? f.detail;
+                  return (
+                    <li
+                      key={idx}
+                      className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-6 pb-5 border-b border-neutral-100 dark:border-neutral-900 last:border-0 last:pb-0"
+                    >
+                      <h4 className="font-medium text-neutral-900 dark:text-neutral-50 leading-snug">
+                        {featureTitle}
+                      </h4>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                        {featureDetail}
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
       </section>
 
       <section className="rounded-xl border border-neutral-900 bg-neutral-900 text-neutral-50 p-8">
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 font-medium">
           {dict.takeaway}
         </p>
-        <p className="mt-3 text-lg leading-relaxed">{cs.takeaway}</p>
+        <p className="mt-3 text-lg leading-relaxed">{takeaway}</p>
       </section>
     </div>
   );

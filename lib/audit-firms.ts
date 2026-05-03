@@ -267,7 +267,7 @@ export const AUDIT_FIRMS: ReadonlyArray<AuditFirm> = [
     tier: "A+",
     category: "smart-contract",
     specialty: ["Smart Contract", "Bridge", "L1/L2"],
-    notableClients: ["Optimism", "Polygon", "Stake.fish"],
+    notableClients: ["Optimism", "Polygon", "Abstract"],
     website: "https://chainlight.io",
     notes: "한국 기반 보안 리서치 팀. 웹2 보안 회사 티오리(Theori) 산하.",
   },

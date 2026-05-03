@@ -49,7 +49,10 @@ const PAGE_DICT: Readonly<
 };
 
 const CATEGORY_LABELS: Readonly<
-  Record<EcosystemCategory, Readonly<Record<Lang, { label: string; description: string }>>>
+  Record<
+    EcosystemCategory,
+    Readonly<Record<Lang, { label: string; description: string }>>
+  >
 > = {
   monitoring: {
     ko: {
@@ -58,7 +61,8 @@ const CATEGORY_LABELS: Readonly<
     },
     en: {
       label: "Monitoring & Detection",
-      description: "Real-time transaction monitoring and threat detection on-chain.",
+      description:
+        "Real-time transaction monitoring and threat detection on-chain.",
     },
   },
   "llm-agent": {
@@ -78,7 +82,8 @@ const CATEGORY_LABELS: Readonly<
     },
     en: {
       label: "Open-source Tools",
-      description: "Open-source tools for static analysis, fuzzing, and symbolic execution.",
+      description:
+        "Open-source tools for static analysis, fuzzing, and symbolic execution.",
     },
   },
   bounty: {
@@ -88,7 +93,8 @@ const CATEGORY_LABELS: Readonly<
     },
     en: {
       label: "Bug Bounty Platform",
-      description: "Platforms that broker collaboration with external whitehats.",
+      description:
+        "Platforms that broker collaboration with external whitehats.",
     },
   },
   insurance: {
@@ -108,7 +114,8 @@ const CATEGORY_LABELS: Readonly<
     },
     en: {
       label: "Wallet & UX Security",
-      description: "Wallet user protection, phishing detection, and transaction simulation.",
+      description:
+        "Wallet user protection, phishing detection, and transaction simulation.",
     },
   },
   incident: {
@@ -194,7 +201,7 @@ export default async function EcosystemPage({
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((entity) => (
-                  <EntityCard key={entity.name} entity={entity} />
+                  <EntityCard key={entity.name} entity={entity} lang={lang} />
                 ))}
               </div>
             </section>

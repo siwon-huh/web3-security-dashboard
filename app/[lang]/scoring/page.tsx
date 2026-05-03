@@ -80,11 +80,12 @@ export default function ScoringPage({
                 answers={answers}
                 score={cs}
                 onChange={handleChange}
+                lang={lang}
               />
             );
           })}
         </div>
-        <ScorePanel score={score} onReset={handleReset} />
+        <ScorePanel score={score} onReset={handleReset} lang={lang} />
       </div>
     </div>
   );

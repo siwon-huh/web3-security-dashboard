@@ -1,12 +1,19 @@
 import type { SecurityEntity } from "@/lib/ecosystem";
 import { firmLogoUrl } from "@/lib/logo";
+import type { Lang } from "@/lib/i18n";
+import { ENTITY_NOTES_EN } from "@/lib/i18n/ecosystem-en";
 
 interface EntityCardProps {
   readonly entity: SecurityEntity;
+  readonly lang?: Lang;
 }
 
-export function EntityCard({ entity }: EntityCardProps) {
+export function EntityCard({ entity, lang = "ko" }: EntityCardProps) {
   const logo = firmLogoUrl(entity.website, 64, entity.name);
+  const note =
+    lang === "en"
+      ? (ENTITY_NOTES_EN[entity.name] ?? entity.notes)
+      : entity.notes;
   return (
     <a
       href={entity.website}
@@ -51,7 +58,7 @@ export function EntityCard({ entity }: EntityCardProps) {
         ))}
       </div>
       <p className="mt-3 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-        {entity.notes}
+        {note}
       </p>
     </a>
   );
