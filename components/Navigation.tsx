@@ -5,16 +5,18 @@ import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { DEFAULT_LANG, isLang, type Lang } from "@/lib/i18n";
 
-const NAV_LABELS: Readonly<Record<Lang, ReadonlyArray<{ href: string; label: string }>>> = {
+const NAV_LABELS: Readonly<
+  Record<Lang, ReadonlyArray<{ href: string; label: string }>>
+> = {
   ko: [
-    { href: "/tier-list", label: "Tier" },
+    { href: "/tier-list", label: "Security Audit" },
     { href: "/ecosystem", label: "Ecosystem" },
     { href: "/incident-response", label: "Incident" },
     { href: "/case-studies", label: "Cases" },
     { href: "/scoring", label: "Score" },
   ],
   en: [
-    { href: "/tier-list", label: "Tier" },
+    { href: "/tier-list", label: "Security Audit" },
     { href: "/ecosystem", label: "Ecosystem" },
     { href: "/incident-response", label: "Incident" },
     { href: "/case-studies", label: "Cases" },
@@ -22,7 +24,9 @@ const NAV_LABELS: Readonly<Record<Lang, ReadonlyArray<{ href: string; label: str
   ],
 };
 
-const ATTRIBUTION: Readonly<Record<Lang, { built: string; researcher: string }>> = {
+const ATTRIBUTION: Readonly<
+  Record<Lang, { built: string; researcher: string }>
+> = {
   ko: { built: "Built by", researcher: "researcher at" },
   en: { built: "Built by", researcher: "researcher at" },
 };

@@ -22,6 +22,11 @@ const PAGE_DICT: Readonly<
       title: string;
       description: string;
       firmsLabel: string;
+      disclaimerEyebrow: string;
+      disclaimerSubjective: string;
+      disclaimerNotAdvice: string;
+      disclaimerContactPrefix: string;
+      disclaimerContactSuffix: string;
     }
   >
 > = {
@@ -31,6 +36,12 @@ const PAGE_DICT: Readonly<
     description:
       "공개된 오딧 보고서, 인시던트 이력, 도구 체인의 깊이, 업계 평판을 종합한 휴리스틱 분류입니다. 같은 티어 안에서도 주력 영역이 다르므로 카테고리별로 함께 분류했습니다.",
     firmsLabel: "firms",
+    disclaimerEyebrow: "Disclaimer",
+    disclaimerSubjective:
+      "이 티어표는 작성자의 주관적 의견이 매우 많이 반영되어 있으며, 객관성을 보장하지 않습니다. 틀린 정보가 포함되어 있을 수 있습니다.",
+    disclaimerNotAdvice: "재무적 조언이 아니며, 참고용으로만 활용해 주세요.",
+    disclaimerContactPrefix: "잘못된 정보가 있다면",
+    disclaimerContactSuffix: "로 연락 주세요.",
   },
   en: {
     eyebrow: "Tier List",
@@ -38,6 +49,12 @@ const PAGE_DICT: Readonly<
     description:
       "A heuristic ranking based on published audit reports, incident history, depth of tooling, and industry reputation. Within each tier, firms are grouped by their primary focus area.",
     firmsLabel: "firms",
+    disclaimerEyebrow: "Disclaimer",
+    disclaimerSubjective:
+      "This tier list is heavily shaped by the author's subjective opinion and does not guarantee objectivity. It may contain incorrect information.",
+    disclaimerNotAdvice: "Not financial advice. Use as reference only.",
+    disclaimerContactPrefix: "If you spot inaccuracies, please reach out on",
+    disclaimerContactSuffix: ".",
   },
 };
 
@@ -120,6 +137,30 @@ export default async function TierListPage({
             </span>
           ))}
         </div>
+
+        <aside className="mt-8 rounded-lg border border-amber-300/60 dark:border-amber-700/40 bg-amber-50/60 dark:bg-amber-900/15 p-4 max-w-3xl">
+          <p className="text-[11px] uppercase tracking-[0.18em] font-medium text-amber-700 dark:text-amber-300">
+            {dict.disclaimerEyebrow}
+          </p>
+          <p className="mt-2 text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            {dict.disclaimerSubjective}
+          </p>
+          <p className="mt-1.5 text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            {dict.disclaimerNotAdvice}
+          </p>
+          <p className="mt-1.5 text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            {dict.disclaimerContactPrefix}{" "}
+            <a
+              href="https://x.com/c4lvin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-neutral-900 dark:hover:text-neutral-50"
+            >
+              X (@c4lvin)
+            </a>
+            {dict.disclaimerContactSuffix}
+          </p>
+        </aside>
       </header>
 
       <div className="space-y-14">
