@@ -121,9 +121,17 @@ export default async function CaseStudyDetailPage({
         <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-medium">
           {dict.eyebrow}
         </p>
-        <h1 className="mt-3 text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-          {cs.name}
-        </h1>
+        <div className="mt-3 flex items-center gap-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={firmLogoUrl(cs.website, 128, cs.name)}
+            alt=""
+            className="h-14 w-14 rounded-lg shrink-0 object-contain border border-neutral-200 dark:border-neutral-800 bg-white"
+          />
+          <h1 className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
+            {cs.name}
+          </h1>
+        </div>
         <p className="mt-2 text-lg text-neutral-500">{tagline}</p>
 
         <div className="mt-6 flex flex-wrap gap-3 text-sm">

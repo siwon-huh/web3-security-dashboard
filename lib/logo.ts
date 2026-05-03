@@ -26,6 +26,7 @@ const LOGO_OVERRIDES: Readonly<Record<string, string>> = {
     "https://pbs.twimg.com/profile_images/1788211356040081408/eKb2lkls_400x400.jpg",
   Electisec:
     "https://pbs.twimg.com/profile_images/1991685321218576384/xtw0gRNz_400x400.jpg",
+  Cap: "https://unavatar.io/x/capmoney_",
 };
 
 export function firmLogoUrl(
