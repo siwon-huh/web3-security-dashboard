@@ -536,7 +536,7 @@ export const AUDIT_FIRMS: ReadonlyArray<AuditFirm> = [
   },
   {
     name: "Decurity",
-    tier: "B",
+    tier: "A",
     category: "smart-contract",
     specialty: ["Smart Contract", "DeFi"],
     notableClients: ["Convex", "Frax"],
