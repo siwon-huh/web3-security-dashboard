@@ -21,6 +21,12 @@ import type {
 import { isLang, type Lang } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 import { SEAL_PROGRAM_DESCRIPTIONS_EN } from "@/lib/i18n/seal-en";
+import {
+  PREP_GROUP_EN,
+  PREP_ITEM_EN,
+  FLOW_STEP_EN,
+  FLOW_ACTION_EN,
+} from "@/lib/i18n/incident-response-en";
 
 const DICT: Readonly<
   Record<
@@ -175,7 +181,7 @@ export default function IncidentResponsePage({
         />
         <div className="mt-6 space-y-8">
           {content.preparation.map((group) => (
-            <PrepGroupCard key={group.id} group={group} />
+            <PrepGroupCard key={group.id} group={group} lang={lang} />
           ))}
         </div>
       </section>
@@ -195,7 +201,7 @@ export default function IncidentResponsePage({
         <ol className="mt-8 relative">
           <div className="absolute left-3 top-2 bottom-2 w-px bg-neutral-200 dark:bg-neutral-800" />
           {content.flow.map((step, idx) => (
-            <FlowStepCard key={step.id} step={step} index={idx} />
+            <FlowStepCard key={step.id} step={step} index={idx} lang={lang} />
           ))}
         </ol>
       </section>
@@ -435,29 +441,47 @@ function SectionHeader({
   );
 }
 
-function PrepGroupCard({ group }: { readonly group: PrepGroup }) {
+function PrepGroupCard({
+  group,
+  lang,
+}: {
+  readonly group: PrepGroup;
+  readonly lang: Lang;
+}) {
+  const enGroup = lang === "en" ? PREP_GROUP_EN[group.id] : null;
+  const title = enGroup?.title ?? group.title;
+  const description = enGroup?.description ?? group.description;
   return (
     <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
       <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-        {group.title}
+        {title}
       </h3>
-      <p className="mt-1 text-sm text-neutral-500">{group.description}</p>
+      <p className="mt-1 text-sm text-neutral-500">{description}</p>
 
       <ul className="mt-5 space-y-5">
         {group.items.map((item, idx) => (
-          <PrepItemRow key={`${group.id}-${idx}`} item={item} />
+          <PrepItemRow key={`${group.id}-${idx}`} item={item} lang={lang} />
         ))}
       </ul>
     </div>
   );
 }
 
-function PrepItemRow({ item }: { readonly item: PrepItem }) {
+function PrepItemRow({
+  item,
+  lang,
+}: {
+  readonly item: PrepItem;
+  readonly lang: Lang;
+}) {
+  const enItem = lang === "en" ? PREP_ITEM_EN[item.title] : null;
+  const title = enItem?.title ?? item.title;
+  const detail = enItem?.detail ?? item.detail;
   return (
     <li className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-6 pb-5 border-b border-neutral-100 dark:border-neutral-900 last:border-0 last:pb-0">
       <div>
         <h4 className="font-medium text-neutral-900 dark:text-neutral-50 leading-snug">
-          {item.title}
+          {title}
         </h4>
         {item.tools && item.tools.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1.5">
@@ -476,7 +500,7 @@ function PrepItemRow({ item }: { readonly item: PrepItem }) {
         )}
       </div>
       <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-        {item.detail}
+        {detail}
       </p>
     </li>
   );
@@ -485,10 +509,17 @@ function PrepItemRow({ item }: { readonly item: PrepItem }) {
 function FlowStepCard({
   step,
   index,
+  lang,
 }: {
   readonly step: FlowStep;
   readonly index: number;
+  readonly lang: Lang;
 }) {
+  const enStep =
+    lang === "en" ? (FLOW_STEP_EN[step.id] ?? FLOW_STEP_EN[step.phase]) : null;
+  const phase = enStep?.phase ?? step.phase;
+  const timing = enStep?.timing ?? step.timing;
+  const summary = enStep?.summary ?? step.summary;
   return (
     <li className="relative pl-12 pb-8 last:pb-0">
       <div className="absolute left-0 top-0 h-7 w-7 rounded-full bg-neutral-900 text-neutral-50 text-xs font-semibold flex items-center justify-center tabular-nums z-10">
@@ -497,35 +528,41 @@ function FlowStepCard({
       <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5">
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
           <h3 className="font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-            {step.phase}
+            {phase}
           </h3>
           <span className="text-[11px] uppercase tracking-widest text-neutral-500 tabular-nums">
-            {step.timing}
+            {timing}
           </span>
         </div>
         <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-          {step.summary}
+          {summary}
         </p>
         <ul className="mt-4 space-y-2">
-          {step.actions.map((action, idx) => (
-            <li
-              key={idx}
-              className={[
-                "text-sm leading-relaxed pl-4 relative",
-                action.emphasis
-                  ? "text-neutral-900 dark:text-neutral-50 font-medium"
-                  : "text-neutral-700 dark:text-neutral-300",
-              ].join(" ")}
-            >
-              <span
+          {step.actions.map((action, idx) => {
+            const text =
+              lang === "en"
+                ? (FLOW_ACTION_EN[action.text] ?? action.text)
+                : action.text;
+            return (
+              <li
+                key={idx}
                 className={[
-                  "absolute left-0 top-2 h-1 w-1 rounded-full",
-                  action.emphasis ? "bg-neutral-900" : "bg-neutral-400",
+                  "text-sm leading-relaxed pl-4 relative",
+                  action.emphasis
+                    ? "text-neutral-900 dark:text-neutral-50 font-medium"
+                    : "text-neutral-700 dark:text-neutral-300",
                 ].join(" ")}
-              />
-              {action.text}
-            </li>
-          ))}
+              >
+                <span
+                  className={[
+                    "absolute left-0 top-2 h-1 w-1 rounded-full",
+                    action.emphasis ? "bg-neutral-900" : "bg-neutral-400",
+                  ].join(" ")}
+                />
+                {text}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </li>

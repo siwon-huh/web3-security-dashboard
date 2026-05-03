@@ -69,7 +69,7 @@ export const FIRM_NOTES_EN: Readonly<Record<string, string>> = {
   Veridise:
     "ZK circuit verification specialist with deep academic roots.",
   Hexens:
-    "Covers both ZK and EVM. Recognized for circuit analysis capability.",
+    "Well known for zero compromise record. Covers both general smart contract and cryptography.",
   "ABDK Consulting":
     "Known for mathematical correctness and gas-optimization libraries.",
   PeckShield:

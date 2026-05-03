@@ -35,10 +35,6 @@ export default function RootLayout({
         <ThemeProvider>
           <Navigation />
           <main className="flex-1">{children}</main>
-          <footer className="border-t border-neutral-200 dark:border-neutral-800 py-8 text-center text-xs text-neutral-500">
-            Tier list and weights are opinionated heuristics. Verify before
-            relying on them.
-          </footer>
         </ThemeProvider>
       </body>
     </html>

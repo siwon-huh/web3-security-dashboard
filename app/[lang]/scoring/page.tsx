@@ -69,7 +69,7 @@ export default function ScoringPage({
 
       <div className="grid gap-8 lg:grid-cols-[1fr_320px] items-start">
         <div className="flex flex-col gap-6 min-w-0">
-          <ResearchPromptBox />
+          <ResearchPromptBox lang={lang} />
           {CHECKLIST.map((category) => {
             const cs = score.categories.find((c) => c.id === category.id);
             if (!cs) return null;
