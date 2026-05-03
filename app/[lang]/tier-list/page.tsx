@@ -49,7 +49,9 @@ const TIER_LABELS: Readonly<Record<Tier, Readonly<Record<Lang, string>>>> = {
   C: { ko: "C Tier", en: "C Tier" },
 };
 
-const TIER_DESCRIPTIONS: Readonly<Record<Tier, Readonly<Record<Lang, string>>>> = {
+const TIER_DESCRIPTIONS: Readonly<
+  Record<Tier, Readonly<Record<Lang, string>>>
+> = {
   S: {
     ko: "업계 최상위. 대형 프로토콜의 표준이며 비용이 높고 대기열이 길다.",
     en: "Industry top tier. The standard for major protocols. High cost and long queues.",
@@ -80,7 +82,10 @@ const CATEGORY_LABELS: Readonly<
     en: "General Smart Contract",
   },
   cryptography: { ko: "Cryptography & ZK", en: "Cryptography & ZK" },
-  "formal-verification": { ko: "Formal Verification", en: "Formal Verification" },
+  "formal-verification": {
+    ko: "Formal Verification",
+    en: "Formal Verification",
+  },
 };
 
 export default async function TierListPage({
@@ -154,7 +159,7 @@ export default async function TierListPage({
                       </div>
                       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {subset.map((firm) => (
-                          <FirmCard key={firm.name} firm={firm} />
+                          <FirmCard key={firm.name} firm={firm} lang={lang} />
                         ))}
                       </div>
                     </div>

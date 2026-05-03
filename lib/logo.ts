@@ -22,6 +22,8 @@ const LOGO_OVERRIDES: Readonly<Record<string, string>> = {
   Aderyn: "https://avatars.githubusercontent.com/u/66713957?s=48&v=4",
   "Neptune Mutual":
     "https://www.alchemy.com/dapps/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Falchemy-website%2Fimage%2Fupload%2Fv1694675707%2Fdapp-store%2Fdapp-logos%2FNeptune%2520Mutual.png&w=256&q=75",
+  Spearbit:
+    "https://pbs.twimg.com/profile_images/1788211356040081408/eKb2lkls_400x400.jpg",
 };
 
 export function firmLogoUrl(

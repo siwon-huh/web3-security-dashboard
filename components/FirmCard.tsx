@@ -1,12 +1,17 @@
 import type { AuditFirm } from "@/lib/types";
 import { firmLogoUrl } from "@/lib/logo";
+import { firmNoteFor } from "@/lib/i18n/audit-firms-en";
+import type { Lang } from "@/lib/i18n";
 
 interface FirmCardProps {
   readonly firm: AuditFirm;
+  readonly lang?: Lang;
 }
 
-export function FirmCard({ firm }: FirmCardProps) {
+export function FirmCard({ firm, lang = "ko" }: FirmCardProps) {
   const logo = firmLogoUrl(firm.website, 64, firm.name);
+  const note = firmNoteFor(firm.name, firm.notes, lang);
+  const clientsLabel = lang === "en" ? "Clients" : "Clients";
   return (
     <a
       href={firm.website}
@@ -44,11 +49,13 @@ export function FirmCard({ firm }: FirmCardProps) {
         ))}
       </div>
       <p className="mt-3 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-        {firm.notes}
+        {note}
       </p>
       {firm.notableClients.length > 0 && (
         <p className="mt-3 pt-3 border-t border-neutral-100 dark:border-neutral-900 text-[11px] text-neutral-500">
-          <span className="text-neutral-400 dark:text-neutral-600">Clients </span>
+          <span className="text-neutral-400 dark:text-neutral-600">
+            {clientsLabel}{" "}
+          </span>
           {firm.notableClients.join(", ")}
         </p>
       )}
